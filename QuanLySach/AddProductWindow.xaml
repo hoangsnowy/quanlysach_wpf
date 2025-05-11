@@ -1,0 +1,35 @@
+﻿<Window x:Class="QuanLySach.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLySach"
+        xmlns:converters="clr-namespace:QuanLySach.Converters"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="Thêm Sản Phẩm" Height="450" Width="800" Loaded="AddProductWindow_OnLoaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converters:RelativeToAbsoluteConverter x:Key="absoluteConverter"/>
+    </Window.Resources>
+    <Canvas >
+        <TextBox Name="txtName"  Canvas.Left="110" TextWrapping="Wrap" Text="{Binding BookInfo.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="23" Width="280" Height="46" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Tên" Canvas.Left="67" Canvas.Top="46" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="txtPrice" Canvas.Left="110" TextWrapping="Wrap" Text="{Binding BookInfo.Price, StringFormat=N0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="80" Width="280" Height="27" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Giá" Canvas.Left="67" Canvas.Top="86"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="txtQuantity" Canvas.Left="110" TextWrapping="Wrap" Text="{Binding BookInfo.Quantity, StringFormat=N0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="119" Width="280" Height="27" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Số lượng" Canvas.Left="39" Canvas.Top="120"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ComboBox Name="txt" Canvas.Left="110"  Canvas.Top="162" Width="280" Height="27" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                  ItemsSource="{Binding Categories}"  DisplayMemberPath="Name" SelectedItem="{Binding BookInfo.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  IsSynchronizedWithCurrentItem="True">
+        </ComboBox>
+        <Label Content="Loại Sách" Canvas.Left="37" Canvas.Top="163" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Name="txtAuthor" Canvas.Left="110" TextWrapping="Wrap" Text="{Binding BookInfo.Author, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="203" Width="280" Height="27" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Tác giả" Canvas.Left="53" Canvas.Top="204" />
+        <Image Source="{Binding BookInfo.CoverImagePath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,Converter={StaticResource absoluteConverter}}" Name="CoverImagePath" Height="256" Canvas.Left="428" Canvas.Top="20" Width="207"/>
+        <DatePicker Name="dpPublishedDate" Text="{Binding BookInfo.PublishedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="110" Canvas.Top="247" Width="280" Height="29" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Ngày xuất bản" Canvas.Left="10" Canvas.Top="250" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Name="btnOK"  Command="{Binding SaveProductCommand}" Content="OK" Canvas.Left="110" Canvas.Top="305" Height="29" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Name="btnCancel" Click="BtnCancel_OnClick"  Content="Cancel" Canvas.Left="250" Canvas.Top="305" Height="29" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Name="btnChangeImage" Command="{Binding UploadImageCommand}" Content="Browse" Canvas.Left="490" Canvas.Top="305" Height="29" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Canvas>
+</Window>

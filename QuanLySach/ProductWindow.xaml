@@ -1,0 +1,88 @@
+﻿<Window x:Class="QuanLySach.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLySach"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:converters="clr-namespace:QuanLySach.Converters"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        Title="Quán ly Sản Phẩm" Height="600" Width="1280">
+    <Window.Resources>
+        <converters:RelativeToAbsoluteConverter x:Key="AbsoluteConverter"/>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom" Height="30">
+            <Run Text="Total Items:" />
+            <TextBlock Text="{Binding View.TotalItems}"/>
+        </StatusBar>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" >
+                <Button Margin="5, 0, 5, 0" x:Name="PreviousButton" Content="&lt;" FontSize="25" FontWeight="Bold" Padding="0, -5, 0, 0" Width="80" Height="35" Command="{Binding PreviousButtonClickCommand}">
+                </Button>
+                <TextBlock Text="{Binding View.CurrentPage}" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Text="/" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Text="{Binding View.PageCount}" FontSize="25" FontWeight="Bold"/>
+                <Button Margin="5, 0, 5, 0" x:Name="NextButton" Content="&gt;" FontSize="25" FontWeight="Bold" Padding="0, -5, 0, 0" Width="80" Height="35" Command="{Binding NextButtonClickCommand}"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top" Height="55">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Name="Keyword" Text="Keyword" Grid.Column="0" Grid.Row="0" Margin="5 0 5 0 "  />
+                <TextBox  Name="SearchTextBox" KeyUp="SearchTextBox_OnKeyUp" Grid.Column="0" Grid.Row="1" Margin="5 0 5 0 " />
+                <TextBlock Name="Category" Text="Loại Sách" Grid.Column="1" Grid.Row="0" Margin="5 0 5 0 "  />
+                <ComboBox  Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Categories}"  DisplayMemberPath="Name" SelectedItem="{Binding SelectedCategory}"
+                           IsSynchronizedWithCurrentItem="False" Margin="5 0 5 0 " >
+                    <Behaviors:Interaction.Triggers>
+                        <Behaviors:EventTrigger EventName="SelectionChanged">
+                            <Behaviors:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
+                        </Behaviors:EventTrigger>
+                    </Behaviors:Interaction.Triggers>
+                </ComboBox>
+            </Grid>
+            <ListView  Name="ListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=View}">
+                <ListView.Resources>
+                    <ContextMenu x:Key="BookContextMenu">
+                        <MenuItem Header="Delete" Click="DeleteMenuItem_OnClick"></MenuItem>
+                        <MenuItem Header="Edit" Click="EditMenuItem_OnClick"></MenuItem>
+                        <MenuItem Header="Add" Click="AddMenuItem_OnClick"></MenuItem>
+                    </ContextMenu>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource BookContextMenu}"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Width="300">
+                            <Image Source="{Binding CoverImagePath, Converter={StaticResource AbsoluteConverter}}" Margin="0, 0, 10, 0" Width="70" Height="100"/>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                            <Run Text="{Binding ID}" Foreground="Red"/> 
+                            <Run Text=" - "/>
+                            <Run Text="{Binding Name}" FontWeight="Bold" />
+                            <LineBreak/>
+                            <Run Text="{Binding Author}" FontWeight="Bold" />
+                            <Run Text=" - "/>
+                            <Run Text="{Binding Price, StringFormat=N0}" FontWeight="Bold" />
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+    </DockPanel>
+</Window>

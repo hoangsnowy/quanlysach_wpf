@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Extensions\**" />
+	  <EmbeddedResource Remove="Extensions\**" />
+	  <None Remove="Extensions\**" />
+	  <Page Remove="Extensions\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="icon\icons8_contacts_24px.png" />
+		<None Remove="icon\icons8_group_message_24px.png" />
+		<None Remove="icon\icons8_notification_26px.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="icon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="LiveCharts.Wpf.Core" Version="0.9.8" />
+		<PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\QuanLySach.Business\QuanLySach.Business.csproj" />
+		<ProjectReference Include="..\QuanLySach.DAL.EF\QuanLySach.DAL.EF.csproj" />
+		<ProjectReference Include="..\QuanLySach.DAL.Excel\QuanLySach.DAL.Excel.csproj" />
+		<ProjectReference Include="..\QuanLySach.DAL.Registry\QuanLySach.DAL.WindowRegistry.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="FodyWeavers.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_01.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_02.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_03.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_04.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_05.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_06.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_07.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_08.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_09.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_10.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_11.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_12.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_13.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_14.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_15.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_16.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_17.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_18.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_19.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\book_20.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="icon\icons8_contacts_24px.png" />
+		<Resource Include="icon\icons8_group_message_24px.png" />
+		<Resource Include="icon\icons8_notification_26px.png" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,86 @@
+﻿<Window x:Class="QuanLySach.OrderListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLySach"
+        mc:Ignorable="d"
+        Title="Danh Sách Đơn Hàng" Height="850" Width="880" WindowStartupLocation="CenterScreen">
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom" Height="30">
+            <Run Text="Total Items:" />
+            <TextBlock Text="{Binding View.TotalItems}"/>
+        </StatusBar>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" >
+                <Button Margin="5, 0, 5, 0" x:Name="PreviousButton" Content="&lt;" FontSize="25" FontWeight="Bold" Padding="0, -5, 0, 0" Width="80" Height="35" Command="{Binding PreviousButtonClickCommand}">
+                </Button>
+                <TextBlock Text="{Binding View.CurrentPage}" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Text="/" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Text="{Binding View.PageCount}" FontSize="25" FontWeight="Bold"/>
+                <Button Margin="5, 0, 5, 0" x:Name="NextButton" Content="&gt;" FontSize="25" FontWeight="Bold" Padding="0, -5, 0, 0" Width="80" Height="35" Command="{Binding NextButtonClickCommand}"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top" Height="55">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Text="Từ" Grid.Column="0" Grid.Row="0" Margin="5 0 5 0 "  />
+                <DatePicker Grid.Column="0" Grid.Row="1" Margin="5 0 5 0 " Text="{Binding From, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock  Text="Đến" Grid.Column="1" Grid.Row="0" Margin="5 0 5 0 "  />
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="5 0 5 0 " Text="{Binding To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <DataGrid  AlternatingRowBackground = "LightBlue" ItemsSource="{Binding View}"
+                       AlternationCount = "2" AutoGenerateColumns = "False" CanUserAddRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header = "Thời gian đặt hàng" Binding = "{Binding OrderTime}" />
+                    <DataGridTemplateColumn Header="Chi Tiết" Width="400">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <ListView ItemsSource="{Binding OrderDetails}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Vertical" Width="300">
+                                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                                                        <Run Text="{Binding Book.Name}" Foreground="Red"/> 
+                                                        <Run Text=" - "/>
+                                                        <LineBreak></LineBreak>
+                                                        <Run Text="{Binding UnitPrice}" /> 
+                                                        <Run Text=" x "/>
+                                                        <Run Text="{Binding Quantity}"  />
+                                                        <Run Text=" = "/>
+                                                        <Run Text="{Binding TotalPrice}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header = "Tổng Giá" Binding = "{Binding TotalPrice}" />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="EditOrder_OnClick">Sửa</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="RemoveOrder_OnClick">Xóa</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</Window>

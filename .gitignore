@@ -1,0 +1,31 @@
+
+---
+
+## ✅ 2. 📄 `.gitignore` (chuẩn cho .NET + Visual Studio)
+
+```gitignore
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## Build results
+bin/
+obj/
+*.dll
+*.exe
+*.app
+*.pdb
+*.cache
+*.log
+
+## ASP.NET
+wwwroot/*.publish*
+wwwroot/*.bundle*
+
+## Others
+*.db
+*.DS_Store
+*.swp
+*.bak
+/dist

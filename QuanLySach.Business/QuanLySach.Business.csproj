@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuanLySach.DAL.EF\QuanLySach.DAL.EF.csproj" />
+    <ProjectReference Include="..\QuanLySach.DAL.Excel\QuanLySach.DAL.Excel.csproj" />
+    <ProjectReference Include="..\QuanLySach.DAL.Registry\QuanLySach.DAL.WindowRegistry.csproj" />
+    <ProjectReference Include="..\QuanLySach.DomainModels\QuanLySach.DomainModels.csproj" />
+  </ItemGroup>
+
+</Project>
