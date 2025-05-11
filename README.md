@@ -111,4 +111,4 @@ Mọi đóng góp đều được hoan nghênh! Vui lòng mở issue hoặc gử
 
 ## 📄 Giấy phép
 
-Dự án được cấp phép theo **MIT License**. Xem file [LICENSE](LICENSE) để biết chi tiết.
+Dự án được cấp phép theo **MIT License**
